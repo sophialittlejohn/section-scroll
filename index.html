@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assura</title>
+    <link rel="stylesheet" href="main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header-container">
+      <div class="header">
+        <div class="header-left">
+          <img src="./images/beach-emoji.png" alt="logo" class="logo" />
+          <section class="header-item header-item-active">
+            <span class="blue large">Sophia</span>
+            <p class="small light">USA</p>
+          </section>
+          <section class="header-item">
+            <span class="large light">Sabrina</span>
+            <p class="small light">Mexico</p>
+          </section>
+          <section class="header-item">
+            <span class="large light">Marco</span>
+            <p class="small light">Indonesia</p>
+          </section>
+          <img src="./images/plus.svg" alt="plus-icon" class="plus-icon" />
+        </div>
+        <div class="header-right">
+        
+          <button class="call-to-action bold small">
+            Take me to the beach, now!
+            <img
+              class="chevron-icon"
+              src="./images/chevron.svg"
+              alt="chevron"
+            />
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="layout-container">
+      <section class="column column-left">
+        <input
+          class="medium"
+          type="text"
+          placeholder="Search for Sophia's favorite beaches"
+        />
+        <div class="content">
+          <span id="section0"></span>
+          <h2 class="title x-large light">La Jolla, San Diego</h2>
+          <img src="./images/la-jolla.jpg" alt="" />
+        </div>
+        <div class="content">
+          <span id="section1"></span>
+          <h2 class="title x-large light">Huntingon Beach, LA</h2>
+          <img src="./images/huntington-beach.jpg" alt="" />
+        </div>
+        <div class="content">
+          <span id="section2"></span>
+          <h2 class="title x-large light">Jensen Beach, Stuart</h2>
+          <img src="./images//stuart-beach.jpg" alt="" />
+        </div>
+        <div class="content">
+          <span id="section3"></span>
+          <h2 class="title x-large light">
+            Folly Beach, Charleston
+          </h2>
+          <img src="./images/folly-beach.jpg" alt="" />
+        </div>
+      </section>
+      <section class="column column-right">
+        <div class="sticky-content">
+          <div class="edit-person">
+            <div class="edit-person-person">
+              <div class="blue large">Sophia</div>
+              <div class="medium light">Beaches in the USA</div>
+            </div>
+            <img src="./images/edit.svg" alt="edit" class="edit-icon" />
+          </div>
+          <hr class="hr" />
+          <div class="">
+            <a href="#section0">
+              <div class="menu-item transition" id="title0">
+                <div class="title-short">
+                  <h3 class="bold">La Jolla</h3>
+                  <p class="bold">San Diego</p>
+                </div>
+                <div class="subtitle-short">
+                  <h4 class="light">CALIFORNIA</h4>
+                </div>
+              </div>
+            </a>
+            <a href="#section1">
+              <div class="menu-item transition" id="title1">
+                <div class="title-short">
+                  <h3 class="bold">Huntingon Beach</h3>
+                  <p class="bold">Los Angeles</p>
+                </div>
+
+                <div class="subtitle-short">
+                  <h4 class="light">CALIFORNIA</h4>
+                </div>
+              </div>
+            </a>
+            <a href="#section2">
+              <div class="menu-item transition" id="title1">
+                <div class="title-short">
+                  <h3 class="bold">Jensen Beach</h3>
+                  <p class="bold">Stuart</p>
+                </div>
+
+                <div class="subtitle-short">
+                  <h4 class="light">FLORIDA</h4>
+                </div>
+              </div>
+            </a>
+            <a href="#section3">
+              <div class="menu-item transition" id="title3">
+                <div class="title-short">
+                  <h3 class="bold">Folly Beach</h3>
+                  <p class="bold">Charleston</p>
+                </div>
+
+                <div class="subtitle-short">
+                  <h4 class="light">SOUTH CAROLINA</h4>
+                </div>
+              </div>
+            </a>
+          </div>
+          <hr class="hr" />
+         
+      </section>
+    </main>
+    <script>
+      const START_INDEX = 0;
+      const TRANSITION_BUFFEER = 250;
+
+      const sections = document.querySelectorAll(".content");
+      const menuItems = document.querySelectorAll(".menu-item");
+      const header = document.querySelector(".header");
+
+      const headerBottom = header.getBoundingClientRect().bottom;
+      const headerHeight = header.getBoundingClientRect().height;
+
+      const setIndicator = current => {
+        Array.from(menuItems).map((item, index) => {
+          if (index === current) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+      };
+
+      setIndicator(START_INDEX);
+
+      const handleScrollChange = () => {
+        Array.from(sections).forEach((section, index) => {
+          const sectionHeight = section.getBoundingClientRect().y;
+          if (
+            sectionHeight < headerBottom + TRANSITION_BUFFEER &&
+            sectionHeight < headerHeight + TRANSITION_BUFFEER
+          ) {
+            setIndicator(index);
+          }
+        });
+      };
+
+      document.addEventListener("scroll", handleScrollChange);
+    </script>
+  </body>
+</html>
