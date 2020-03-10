@@ -1,3 +1,5 @@
-# section-scroll
+# Section Scroll Indicator
 
-HTML/CSS mockup of a scroll section indicator
+A HTML/CSS mockup of a scroll section indicator
+
+![moves](./images/screenshot.png)
